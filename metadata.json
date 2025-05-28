@@ -1,0 +1,7 @@
+{
+  "name": "Meal Nutrient Analyzer",
+  "description": "Take a picture of your meal to get an AI-powered estimate of its macronutrients, calories, and micronutrients.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; 
+                 script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://esm.sh; 
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; 
+                 font-src 'self' https://fonts.gstatic.com; 
+                 img-src 'self' data: https://source.unsplash.com https://picsum.photos; 
+                 connect-src 'self' https://generativelanguage.googleapis.com;
+                 frame-src 'self';
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self';">
+  <title>NutriSnap AI - Meal Analyzer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', 'Inter', sans-serif;
+      background: linear-gradient(-45deg, var(--bg-gradient-start, #FFFBEB), var(--bg-gradient-mid, #FED7AA), var(--bg-gradient-end, #FDBA74));
+      background-size: 400% 400%;
+      animation: gradientBG 25s ease infinite;
+      color: var(--text-primary, #78350F); /* Default text color */
+    }
+    html.dark body {
+       --bg-gradient-start: #451A03;
+       --bg-gradient-mid: #78350F;
+       --bg-gradient-end: #B45309;
+       color: var(--dark-text-primary, #FEF3C7); /* Default dark text color */
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--surface-color, #FFFFFF); 
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-color, #F97316); 
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-hover, #EA580C); 
+    }
+
+    .fade-in {
+      animation: fadeInAnimation 0.5s ease-out forwards;
+    }
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    /* ... other delay classes ... */
+
+    @keyframes fadeInAnimation {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .transition-all-smooth {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: 'class', // Enable class-based dark mode
+      theme: {
+        extend: {
+          colors: {
+            'brand-background': 'var(--bg-color, #FFFBEB)', 
+            'brand-surface': 'var(--surface-color, #FFFFFF)',
+            'brand-surface-alt': 'var(--surface-alt-color, #FFF7ED)', 
+            'brand-text-primary': 'var(--text-primary, #78350F)', 
+            'brand-text-secondary': 'var(--text-secondary, #B45309)',
+            'brand-text-muted': 'var(--text-muted, #D97706)', 
+            'brand-primary': 'var(--primary-color, #F97316)', 
+            'brand-primary-hover': 'var(--primary-hover, #EA580C)',
+            'brand-primary-light': 'var(--primary-light, #FED7AA)', 
+            'brand-accent': 'var(--accent-color, #FACC15)', 
+            'brand-accent-hover': 'var(--accent-hover, #EAB308)',
+            
+            'dark-brand-background': 'var(--dark-bg-color, #451A03)', 
+            'dark-brand-surface': 'var(--dark-surface-color, #522506)', 
+            'dark-brand-surface-alt': 'var(--dark-surface-alt-color, #4A2005)',
+            'dark-brand-text-primary': 'var(--dark-text-primary, #FEF3C7)',
+            'dark-brand-text-secondary': 'var(--dark-text-secondary, #FDE68A)',
+            'dark-brand-text-muted': 'var(--dark-text-muted, #FCD34D)', 
+            'dark-brand-primary': 'var(--dark-primary-color, #FB923C)',
+            'dark-brand-primary-hover': 'var(--dark-primary-hover, #F97316)',
+            'dark-brand-primary-light': 'var(--dark-primary-light, #FDBA74)',
+            'dark-brand-accent': 'var(--dark-accent-color, #FDE047)',
+            'dark-brand-accent-hover': 'var(--dark-accent-hover, #FACC15)',
+
+            'success': '#10B981', 'dark-success': '#34D399',
+            'warning': '#F59E0B', 'dark-warning': '#FBBF24',
+            'error': '#EF4444', 'dark-error': '#F87171',
+            'info': '#3B82F6', 'dark-info': '#60A5FA',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0px)' },
+            },
+            slideUpFadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0px)' },
+            },
+            pulseSimple: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '.7' },
+            }
+          },
+          animation: {
+            fadeIn: 'fadeIn 0.5s ease-out forwards',
+            slideUpFadeIn: 'slideUpFadeIn 0.5s ease-out forwards',
+            pulseSimple: 'pulseSimple 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      },
+    }
+  </script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.1.0",
+    "framer-motion": "https://esm.sh/framer-motion@^11.2.12",
+    "jspdf": "https://esm.sh/jspdf@2.5.1",
+    "html2canvas": "https://esm.sh/html2canvas@1.4.1"
+  }
+}
+</script>
+</head>
+<body class="antialiased font-poppins">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html><link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>
