@@ -65,24 +65,25 @@ The application serves as a comprehensive digital nutritionist, offering users t
 2. NPM or Yarn package manager
 3. Google Gemini API key
 
-**Installation**
+### Installation
 
-1. Clone the repository
-bash
-git clone https://github.com/Dinesh-codeswell/AI-Meal-Planner.git
-cd AI-Meal-Planner
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/innovatehub.git
+   cd innovatehub
+2. **Install dependencies**
+   ```bash
+   npm install
 
-Install dependencies
-bashnpm install
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+Fill in your Supabase credentials and other required environment variables.
 
-Environment Configuration
-Create a .env.local file in the root directory:
-envGEMINI_API_KEY=your_gemini_api_key_here
+4. **Start the development server**
+npm run dev
 
-Run the application
-bashnpm run dev
-
-Access the application
+5. **Access the application**
 - Open your browser and navigate to http://localhost:3000
 
 📋 Usage Guide
