@@ -81,7 +81,7 @@ The application serves as a comprehensive digital nutritionist, offering users t
 Fill in your Supabase credentials and other required environment variables.
 
 4. **Start the development server**
-npm run dev
+- npm run dev
 
 5. **Access the application**
 - Open your browser and navigate to http://localhost:3000
